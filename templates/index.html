@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Money Maker</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <div id="display">
+                <h1>Your Gold: {{ session['gold'] }}</h1>
+            </div>
+            <div id="choicetray">
+                <div class="option">
+                    <div class="top">
+                        <h2>Pan for Gold</h2>
+                        <h4>Earn 10-20</h4>
+                    </div>
+                    <form class="button" action="/process" method="post">
+                        <input type="hidden" name="option" value="pan">
+                        <input type="submit" value="Find Gold!">
+                    </form>
+                </div>
+                <div class="option">
+                    <div class="top">
+                        <h2>Mine for Gold</h2>
+                        <h4>Earn 0-40 gold</h4>
+                    </div>
+                    <form class="button" action="/process" method="post">
+                        <input type="hidden" name="option" value="mine">
+                        <input type="submit" value="Find Gold!">
+                    </form>
+                </div>
+                <div class="option">
+                    <div class="top">
+                        <h2>Attempt to pickpocket</h2>
+                        <h4>50% chance to steal 20-100 gold, 45% chance of failing, and 5% chance of being caught and losing all of your gold</h4>
+                    </div>
+                    <form class="button" action="/process" method="post">
+                        <input type="hidden" name="option" value="pick">
+                        <input type="submit" value="Find Gold!">
+                    </form>
+                </div>
+                <div class="option">
+                    <div class="top">
+                        <h2>Gamble at the casino</h2>
+                        <h4>Earn or lose 0-50 gold</h4>
+                    </div>
+                    <form class="button" action="/process" method="post">
+                        <input type="hidden" name="option" value="gamble">
+                        <input type="submit" value="Find Gold!">
+                    </form>
+                </div>
+            </div>
+            <div id="activity">
+                <h1>Activity:</h1>
+                <div id="activitydisp">
+                    <ul>
+                        {%if length > 0%}
+                            {%for i in range(0, length)%}
+                                <li class="none">{{ activity[i] }}</li>
+                            {%endfor%}
+                        {%endif%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
